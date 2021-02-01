@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>OrangeAPI</title>
+    </head>
+    <body>
+        <h1>Orange is delicious!</h1>
+        <h3>Please add new orange!</h3>
+        <form action="/oranges/post" method="POST">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="taste" placeholder="taste">
+            <input type="text" name="origin" placeholder="origin">
+            <input type="text" name="season" placeholder="season">
+            <button type="submit">Add</button>
+        </form>
+        <h3>Modify the orange. Please input orange name!</h3>
+        <form action="/oranges/patch" method="POST">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="taste" placeholder="taste">
+            <input type="text" name="origin" placeholder="origin">
+            <input type="text" name="season" placeholder="season">
+            <!-- <input type="hidden" name="_method" valud="PATCH">  -->
+            <button type="submit">Modify</button>
+        </form>
+        <h3>Delete the orange. Please input orange name!</h3>
+        <form action="/oranges/delete" method="POST">
+            <input type="text" name="name" placeholder="name">
+            <button type="submit">Delete</button>
+        </form>
+    </body>
+</html>

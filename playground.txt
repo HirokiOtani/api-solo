@@ -1,11 +1,11 @@
-CREATE TABLE apples(
+CREATE TABLE oranges(
     id SERIAL NOT NULL,
     name VARCHAR(50) NOT NULL,
-    characteristics VARCHAR(100) NOT NULL,
+    taste VARCHAR(50),
     origin VARCHAR(50),
     season VARCHAR(50),
     PRIMARY KEY (id)
 );
 
-INSERT INTO apples (name, characteristics, origin, season)
-VALUES ('Akibae', 'juicy, black', 'Nagano', 'October');
+INSERT INTO oranges (name, taste, origin, season)
+VALUES ('Hassaku', 'sweet, bitter', 'Hiroshima', 'April');
