@@ -24,23 +24,22 @@ app.post("/oranges/post", async (req, res) => {
     origin: req.body.origin,
     season: req.body.season,
   });
-  res
-    .status(200)
-    .send(
-      "Add a new orange! :" +
-        req.body.name +
-        req.body.taste +
-        req.body.origin +
-        req.body.season
-    );
+  res.status(200).send("Add " + req.body.name + "!");
 });
 
 app.post("/oranges/patch", async (req, res) => {
-  await knex("oranges").where({ name: req.body.name }).update({
-    taste: req.body.taste,
-    origin: req.body.origin,
-    season: req.body.season,
-  });
+  if (req.body.taste)
+    await knex("oranges")
+      .where({ name: req.body.name })
+      .update({ taste: req.body.taste });
+  if (req.body.origin)
+    await knex("oranges")
+      .where({ name: req.body.name })
+      .update({ origin: req.body.origin });
+  if (req.body.season)
+    await knex("oranges")
+      .where({ name: req.body.name })
+      .update({ season: req.body.season });
   res.status(200).send("Updated!");
 });
 
@@ -51,7 +50,19 @@ app.post("/oranges/delete", async (req, res) => {
 
 app.get("/oranges/get", async (_, res) => {
   const data = await knex.select().from("oranges");
-  res.status(200).send(`<h2>${JSON.stringify(data)}</h2>`);
+  res
+    .status(200)
+    .send(
+      `<h2>${JSON.stringify(data)
+        .split('"')
+        .join(" ")
+        .split("[{")
+        .join("")
+        .split("}]")
+        .join("")
+        .split("},{")
+        .join("\n")}</h2>`
+    );
 });
 
 app.listen(port, () => {

@@ -6,6 +6,9 @@ const knex = require("knex")({
     password: process.env.DB_PW,
     database: process.env.DB_NAME,
   },
+  seeds: {
+    directory: "./seeds",
+  },
 });
 
 module.exports = knex;
